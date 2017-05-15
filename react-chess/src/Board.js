@@ -35,12 +35,6 @@ renderPiece(x, y) {
   }
 }
 
-handleSquareClick(toX, toY) {
-  if (canMoveKnight(toX, toY)) {
-    moveKnight(toX, toY);
-  }
-}
-
   render() {
     const squares = [];
     for (let i = 0; i < 64; i++) {
