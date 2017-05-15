@@ -1,5 +1,5 @@
 {
-  "name": "react-chess",
+  "name": "chess2",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -9,6 +9,9 @@
     "react-dom": "^15.5.4"
   },
   "devDependencies": {
+    "babel-plugin-syntax-decorators": "^6.13.0",
+    "babel-plugin-transform-decorators": "^6.24.1",
+    "babel-preset-env": "^1.4.0",
     "react-scripts": "0.9.5"
   },
   "scripts": {
