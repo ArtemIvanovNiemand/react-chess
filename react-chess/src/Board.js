@@ -4,14 +4,10 @@ import HTML5Backend from 'react-dnd-html5-backend';
 import PropTypes from 'prop-types';
 import BoardSquare from './BoardSquare';
 import Knight from './Knight';
+import { connect } from 'react-redux'
+
 
 class Board extends Component {
-  static propTypes = {
-    knightPosition: PropTypes.arrayOf(
-      PropTypes.number.isRequired
-    ).isRequired
-  };
-
   renderSquare(i) {
   const x = i % 8;
   const y = Math.floor(i / 8);
@@ -27,7 +23,7 @@ class Board extends Component {
 }
 
 renderPiece(x, y) {
-  const [knightX, knightY] = this.props.knightPosition;
+  const [knightX, knightY] = this.props.location;
   if (x === knightX && y === knightY) {
     return <Knight />;
   }
@@ -52,4 +48,10 @@ renderPiece(x, y) {
   }
 }
 
-export default DragDropContext(HTML5Backend)(Board);
+function mapStateToProps (state) {
+  return {
+    location: state
+  }
+}
+
+export default connect(mapStateToProps)(DragDropContext(HTML5Backend)(Board));
