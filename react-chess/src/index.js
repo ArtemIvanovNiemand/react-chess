@@ -3,11 +3,11 @@ import ReactDOM from 'react-dom';
 import Board from './Board';
 import { observe } from './Game';
 
-const rootEl = document.getElementById('root');
+const rootElement = document.getElementById('root');
 
 observe(knightPosition =>
   ReactDOM.render(
     <Board knightPosition={knightPosition} />,
-    rootEl
+    rootElement
   )
 );

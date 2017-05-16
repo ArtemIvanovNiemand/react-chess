@@ -2,10 +2,8 @@ import React, { Component } from 'react';
 import { DragDropContext } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 import PropTypes from 'prop-types';
-import Square from './Square';
 import BoardSquare from './BoardSquare';
 import Knight from './Knight';
-import { canMoveKnight, moveKnight } from './Game';
 
 class Board extends Component {
   static propTypes = {

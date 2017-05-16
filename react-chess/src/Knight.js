@@ -35,7 +35,7 @@ class Knight extends Component {
         cursor: 'move'
       }}>
         
-      <img src={DefaultKnightUrl} style={{ width: '100%'}}/>
+      <img src={DefaultKnightUrl} style={{ width: '100%'}} alt="Horse say HI!"/>
       </div>
     );
   }
