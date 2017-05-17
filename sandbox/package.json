@@ -38,6 +38,7 @@
     "react-dom": "^0.14.9",
     "react-redux": "4.4.8",
     "redux": "3.6.0",
-    "redux-logger": "3.0.3"
+    "redux-logger": "3.0.3",
+    "redux-thunk": "2.2.0"
   }
 }
