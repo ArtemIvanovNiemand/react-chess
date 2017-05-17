@@ -1,15 +1,10 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import Board from './Board';
-import { createStore } from 'redux'
-import rootReducer from './reducers'
-import { Provider } from 'react-redux'
+import 'babel-polyfill'
+import React from 'react'
+import { render } from 'react-dom'
+import App from './containers/App'
 
-const store = createStore(rootReducer, [0,0]);
 
-ReactDOM.render(
-	<Provider store={store}>
-  	<Board/>
-  </Provider>,
+render(
+  <App />,
   document.getElementById('root')
-);
+)
