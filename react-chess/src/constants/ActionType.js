@@ -1,0 +1,1 @@
+export const MOVE_HORSE = 'MOVE_HORSE';
