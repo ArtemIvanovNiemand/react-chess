@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Square from './Square';
+import Square from '../components/Square';
 import { ItemTypes } from '../constants/Constants';
 import { DropTarget } from 'react-dnd';
 var canMoveKnight;

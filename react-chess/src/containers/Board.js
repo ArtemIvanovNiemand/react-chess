@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import Knight from './Knight';
-import BoardSquare from './BoardSquare';
 import { DragDropContext } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+
 import * as horseActions from '../actions/HorseActions'
+import Knight from '../components/Knight';
+import BoardSquare from './BoardSquare';
 
 @DragDropContext(HTML5Backend)
 @connect(mapStateToProps, mapDispatchToProps)
