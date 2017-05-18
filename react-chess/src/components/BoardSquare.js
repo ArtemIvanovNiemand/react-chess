@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Square from './Square';
-import { canMoveKnight, moveKnight } from '../containers/Game';
 import { ItemTypes } from '../constants/Constants';
 import { DropTarget } from 'react-dnd';
+var canMoveKnight;
+var moveKnight;
+
 const squareTarget = {
   canDrop(props) {
     return canMoveKnight(props.x, props.y);
   },
 
   drop(props) {
-    moveKnight(props.x, props.y);
+     moveKnight([props.x, props.y]);
   }
 };
 
@@ -47,7 +49,10 @@ export default class BoardSquare extends Component {
   }
 
   render() {
-    const { x, y, connectDropTarget, isOver, canDrop } = this.props;
+    const { x, y, canMove, move, connectDropTarget, isOver, canDrop } = this.props;
+    canMoveKnight = canMove;
+    moveKnight = move;
+    
     const black = (x + y) % 2 === 1;
 
     return connectDropTarget(

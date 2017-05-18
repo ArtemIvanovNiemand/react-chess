@@ -1,12 +1,16 @@
-import 'babel-polyfill'
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from 'react'
+import { render } from 'react-dom'
+import { Provider } from 'react-redux'
+import configureStore from './store/configureStore'
 import Board from './components/Board';
-import { observe } from './containers/Game';
 
-observe(knightPosition =>
-  ReactDOM.render(
-    <Board knightPosition={knightPosition} />,
-    document.getElementById('root')
-  )
+const store = configureStore();
+
+render(
+  <Provider store={store}>
+    <div className='app'>
+      <Board />
+    </div>
+  </Provider>,
+  document.getElementById('root')
 );
