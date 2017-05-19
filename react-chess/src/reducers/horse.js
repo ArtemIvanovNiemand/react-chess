@@ -1,6 +1,6 @@
 import { MOVE_HORSE, CHANGE_FIELD } from '../constants/ActionType'
 
-const initialState = {location: [0,0], str_location:''};
+const initialState = {location: [0,0], str_location:'0,0'};
   
 export default function horse(state = initialState, action) {
   switch (action.type) {
