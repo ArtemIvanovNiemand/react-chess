@@ -6,6 +6,6 @@
 .SquaresWrap {
   width: 500;
   height: 500;
-  display: 'flex';
-  flexWrap: 'wrap'; 
+  display: flex;
+  flex-wrap: wrap; 
 }

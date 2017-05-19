@@ -4,7 +4,7 @@ import Square from '../components/Square';
 import { ItemTypes } from '../constants/Constants';
 import { DropTarget } from 'react-dnd';
 
-import styles from '../styles/BoardSquare.css';
+//import styles from '../styles/BoardSquare.css';
 
 var canMoveKnight;
 var moveKnight;
@@ -38,7 +38,7 @@ export default class BoardSquare extends Component {
 
   renderOverlay(color) {
     return (
-      <div className={styles.BoardWrap} style={{
+      <div style={{
         position: 'absolute',
         top: 0,
         left: 0,
@@ -63,7 +63,7 @@ export default class BoardSquare extends Component {
         position: 'relative',
         width: '100%',
         height: '100%'
-      }}>
+      }}>  
         <Square black={black}>
           {this.props.children}
         </Square>

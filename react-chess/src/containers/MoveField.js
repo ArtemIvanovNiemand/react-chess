@@ -3,36 +3,38 @@ import { connect } from 'react-redux'
 import * as horseActions from '../actions/HorseActions'
 import * as changeActions from '../actions/ChangeActions'
 import { bindActionCreators } from 'redux'
+import autobind from 'autobind-decorator'
 
 @connect(mapStateToProps, mapDispatchToProps)
 export default class MoveField extends Component {
+
+  @autobind
+  onSubmit(e, input){
+    e.preventDefault()
+    var location = input.value.split(',').map(Number);
+    this.props.horseActions.moveHorse(location);
+  }
+
+  @autobind
+  onChange(e){
+    const value = e.target.value;
+    this.props.changeActions.changeField(value);
+  }
 
   render() {
     let input;
 
     return(
     <div>
-      <form onSubmit={e => { 
-         e.preventDefault()
-        if (!input.value.trim()) {
-          return
-        }
-        
-        var location = input.value.split(',').map(Number);
-        this.props.horseActions.moveHorse(location);
-      }}
-      onChange={(e)=>{
-        const value = e.target.value;
-        this.props.changeActions.changeField(value);
-      }}
-      >
+      <form 
+        onSubmit={e => {this.onSubmit(e, input)}}
+        onChange={this.onChange}>
+      
+      <input 
+        ref={node => { input = node }}
+        value={this.props.str_location}/>
 
-      <input ref={node => {
-          input = node
-        }} value={this.props.str_location}/>
-        <button type="submit">
-          Move
-        </button>
+        <button type="submit">Move</button>
       </form>
     </div>
     )
@@ -52,4 +54,3 @@ function mapDispatchToProps(dispatch) {
     changeActions: bindActionCreators(changeActions, dispatch)
   }
 }
-

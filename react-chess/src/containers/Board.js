@@ -33,8 +33,8 @@ renderSquare(i) {
       <BoardSquare x={x}
                    y={y}
                    canMove={this.canMoveKnight}
-                   move={this.props.horseActions.moveHorse}
-      >
+                   move={this.props.horseActions.moveHorse}>
+      
         {this.renderPiece(x, y)}
       </BoardSquare>
     </div>

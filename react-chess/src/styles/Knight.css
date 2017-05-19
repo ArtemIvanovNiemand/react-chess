@@ -1,0 +1,16 @@
+.Knight {
+	height: 100%;
+  width: 100%;
+}
+
+.Dragging {
+  opacity: 0.5;
+  fontSize: 25;
+  fontWeight: 'bold';
+  cursor: 'move',
+}
+
+.NotDragging {
+	composes: Dragging;
+	opacity: 1;
+}

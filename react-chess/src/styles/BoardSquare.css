@@ -1,3 +1,24 @@
+.Square {
+	height: 100%;
+  width: 100%;
+}
+
+.BlackSquare {
+	composes: Square;
+	background: black;
+}
+
+.WhiteSquare {
+	composes: Square;
+	background: white;
+}
+
+.СonnectDropTarget {
+  position: 'relative';
+  width: '100%';
+  height: '100%';
+}
+
 .BoardSquareOverlay{
   position: absolute;
   top: 0;
@@ -9,3 +30,17 @@
   backgroundColor: color
 }
 
+.BoardSquareOverlayGreen {
+  composes: BoardSquareOverlay;
+  background: green;
+}
+
+.BoardSquareOverlayRed{
+  composes: BoardSquareOverlay;
+  background: red;
+}
+
+.BoardSquareOverlayYellow{
+  composes: BoardSquareOverlay;
+  background: yellow;
+}
