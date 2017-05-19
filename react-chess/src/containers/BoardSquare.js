@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 import Square from '../components/Square';
 import { ItemTypes } from '../constants/Constants';
 import { DropTarget } from 'react-dnd';
+
+import styles from '../styles/BoardSquare.css';
+
 var canMoveKnight;
 var moveKnight;
 
@@ -35,7 +38,7 @@ export default class BoardSquare extends Component {
 
   renderOverlay(color) {
     return (
-      <div style={{
+      <div className={styles.BoardWrap} style={{
         position: 'absolute',
         top: 0,
         left: 0,

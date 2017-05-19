@@ -1,0 +1,11 @@
+.BoardWrap {
+  width: 12.5%;
+  height: 12.5%;
+}
+
+.SquaresWrap {
+  width: 500;
+  height: 500;
+  display: 'flex';
+  flexWrap: 'wrap'; 
+}

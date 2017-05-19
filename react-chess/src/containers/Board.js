@@ -3,34 +3,36 @@ import { DragDropContext } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+import autobind from 'autobind-decorator'
 
 import * as horseActions from '../actions/HorseActions'
 import Knight from '../components/Knight';
 import BoardSquare from './BoardSquare';
+import styles from '../styles/Board.css';
 
 @DragDropContext(HTML5Backend)
 @connect(mapStateToProps, mapDispatchToProps)
 export default class Board extends Component {
 
-renderSquare(i) {
-
-   const canMoveKnight = (toX, toY) => {
+  @autobind
+  canMoveKnight(toX, toY){
     const [x, y] = this.props.location;
     const dx = toX - x;
     const dy = toY - y;
 
     return (Math.abs(dx) === 2 && Math.abs(dy) === 1) ||
          (Math.abs(dx) === 1 && Math.abs(dy) === 2);
-  };
+    }
 
+renderSquare(i) {
   const x = i % 8;
   const y = Math.floor(i / 8);
   return (
-    <div key={i}
-         style={{ width: '12.5%', height: '12.5%' }}>
+    <div key={i} className={styles.BoardWrap}>
+         
       <BoardSquare x={x}
                    y={y}
-                   canMove={canMoveKnight}
+                   canMove={this.canMoveKnight}
                    move={this.props.horseActions.moveHorse}
       >
         {this.renderPiece(x, y)}
@@ -54,7 +56,8 @@ renderPiece(x, y) {
     }
 
     return (
-      <div style={{
+      <div
+       style={{
         width: '500',
         height: '500',
         display: 'flex',

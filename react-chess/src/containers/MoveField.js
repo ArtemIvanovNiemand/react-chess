@@ -22,10 +22,8 @@ export default class MoveField extends Component {
         this.props.horseActions.moveHorse(location);
       }}
       onChange={(e)=>{
-        const { name, value } = e.target;
-        console.log(name)
+        const value = e.target.value;
         this.props.changeActions.changeField(value);
-        console.log('str_location:' + this.props.str_location)
       }}
       >
 

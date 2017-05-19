@@ -1,0 +1,14 @@
+.Square {
+	height: 100%;
+  width: 100%;
+}
+
+.BlackSquare {
+	composes: Square;
+	background: black;
+}
+
+.WhiteSquare {
+	composes: Square;
+	background: white;
+}
