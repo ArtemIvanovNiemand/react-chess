@@ -1,5 +1,3 @@
-import horse from './horse'
-
 import { combineReducers } from 'redux'
 import {
   SELECT_REDDIT, INVALIDATE_REDDIT,
@@ -61,8 +59,7 @@ const postsByReddit = (state = { }, action) => {
 
 const rootReducer = combineReducers({
   postsByReddit,
-  selectedReddit,
-  horse
+  selectedReddit
 })
 
 export default rootReducer
