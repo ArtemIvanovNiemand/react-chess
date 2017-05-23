@@ -5,7 +5,8 @@ import { selectReddit, fetchPostsIfNeeded, invalidateReddit } from '../actions/R
 import Picker from '../components/Picker'
 import Posts from '../components/Posts'
 
-class Reddit extends Component {
+@connect(mapStateToProps)
+export default class Reddit extends Component {
   static propTypes = {
     selectedReddit: PropTypes.string.isRequired,
     posts: PropTypes.array.isRequired,
@@ -71,7 +72,7 @@ class Reddit extends Component {
   }
 }
 
-const mapStateToProps = state => {
+function mapStateToProps(state){
   const { selectedReddit, postsByReddit } = state
   const {
     isFetching,
@@ -89,5 +90,3 @@ const mapStateToProps = state => {
     lastUpdated
   }
 }
-
-export default connect(mapStateToProps)(Reddit)
