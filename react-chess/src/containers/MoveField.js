@@ -13,7 +13,6 @@ export default class MoveField extends Component {
   @autobind
   onSubmit(e, input){
     e.preventDefault()
-    this.props.redditActions.receivePosts('sample');
     var location = input.value.split(',').map(Number);
     this.props.horseActions.moveHorse(location);
   }
