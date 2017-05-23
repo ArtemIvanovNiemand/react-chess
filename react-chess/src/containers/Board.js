@@ -56,13 +56,7 @@ renderPiece(x, y) {
     }
 
     return (
-      <div
-       style={{
-        width: '500',
-        height: '500',
-        display: 'flex',
-        flexWrap: 'wrap'
-      }}>
+      <div id= "Board" className={styles.Board}>
         {squares}
       </div>
     );

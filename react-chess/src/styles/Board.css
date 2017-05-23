@@ -3,9 +3,10 @@
   height: 12.5%;
 }
 
-.SquaresWrap {
-  width: 500;
-  height: 500;
+.Board {
+  width: 500px;
+  height: 500px;
   display: flex;
-  flex-wrap: wrap; 
+  flex-wrap: wrap;
+  position: relative;
 }

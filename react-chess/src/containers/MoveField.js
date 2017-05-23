@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import * as horseActions from '../actions/HorseActions'
 import * as changeActions from '../actions/ChangeActions'
-import * as redditActions from '../actions/RedditActions'
 
 import { bindActionCreators } from 'redux'
 import autobind from 'autobind-decorator'
@@ -53,7 +52,6 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     horseActions:  bindActionCreators(horseActions, dispatch),
-    changeActions: bindActionCreators(changeActions, dispatch),
-    redditActions: bindActionCreators(redditActions, dispatch)
+    changeActions: bindActionCreators(changeActions, dispatch)
   }
 }

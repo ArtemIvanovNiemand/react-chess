@@ -5,10 +5,12 @@
 
 .BlackSquare {
 	composes: Square;
+	color: white;
 	background: black;
 }
 
 .WhiteSquare {
 	composes: Square;
+	color: black;
 	background: white;
 }
