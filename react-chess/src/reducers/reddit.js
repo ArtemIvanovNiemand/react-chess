@@ -48,8 +48,7 @@ function posts(state = {
         ...state,
         isFetching: false,
         didInvalidate: false,
-        items: action.posts,
-        lastUpdated: action.receivedAt
+        items: action.posts
       }
     default:
       return state

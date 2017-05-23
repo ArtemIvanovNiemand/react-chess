@@ -21,8 +21,7 @@ export const requestPosts = reddit => ({
 export const receivePosts = (reddit, json) => ({
   type: RECEIVE_POSTS,
   reddit,
-  posts: json.data.children.map(child => child.data),
-  receivedAt: Date.now()
+  posts: json.data.children.map(child => child.data)
 })
 
 export const fetchPostsIfNeeded = reddit => (dispatch, getState) => {

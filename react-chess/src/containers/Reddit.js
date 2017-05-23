@@ -11,7 +11,6 @@ export default class Reddit extends Component {
     selectedReddit: PropTypes.string.isRequired,
     posts: PropTypes.array.isRequired,
     isFetching: PropTypes.bool.isRequired,
-    lastUpdated: PropTypes.number,
     dispatch: PropTypes.func.isRequired
   }
 
@@ -40,27 +39,14 @@ export default class Reddit extends Component {
   }
 
   render() {
-    const { selectedReddit, posts, isFetching, lastUpdated } = this.props
+    const { selectedReddit, posts, isFetching } = this.props
     const isEmpty = posts.length === 0
     return (
       <div>
         <Picker value={selectedReddit}
                 onChange={this.handleChange}
                 options={[ 'reactjs', 'frontend' ]} />
-        <p>
-          {lastUpdated &&
-            <span>
-              Last updated at {new Date(lastUpdated).toLocaleTimeString()}.
-              {' '}
-            </span>
-          }
-          {!isFetching &&
-            <a href="#"
-               onClick={this.handleRefreshClick}>
-              Refresh
-            </a>
-          }
-        </p>
+
         {isEmpty
           ? (isFetching ? <h2>Loading...</h2> : <h2>Empty.</h2>)
           : <div style={{ opacity: isFetching ? 0.5 : 1 }}>
@@ -76,7 +62,6 @@ function mapStateToProps(state){
   const { selectedReddit, postsByReddit } = state
   const {
     isFetching,
-    lastUpdated,
     items: posts
   } = postsByReddit[selectedReddit] || {
     isFetching: true,
@@ -86,7 +71,6 @@ function mapStateToProps(state){
   return {
     selectedReddit,
     posts,
-    isFetching,
-    lastUpdated
+    isFetching
   }
 }
