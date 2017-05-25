@@ -4,13 +4,13 @@
 }
 
 .BlackSquare {
-	composes: Square;
-	color: white;
-	background: black;
+  composes: Square;
+  background: black;
+  background: RGB(118, 150, 86);
 }
 
 .WhiteSquare {
 	composes: Square;
-	color: black;
 	background: white;
+  background: RGB(238, 238, 210);
 }
