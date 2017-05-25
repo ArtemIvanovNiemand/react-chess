@@ -27,10 +27,10 @@ export default class Knight extends Component {
   };
 
   componentDidMount() {
-  const img = new Image();
-  img.src = KNIGHT_DRAG_IMG;
-  img.onload = () => this.props.connectDragPreview(img);
-}
+    const img = new Image();
+    img.src = KNIGHT_DRAG_IMG;
+    img.onload = () => this.props.connectDragPreview(img);
+  }
 
   render() {
     const { connectDragSource, isDragging } = this.props;

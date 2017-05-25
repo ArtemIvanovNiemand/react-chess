@@ -33,8 +33,8 @@ export const fetchPostsIfNeeded = reddit => (dispatch, getState) => {
 const fetchPosts = reddit => dispatch => {
   dispatch(requestPosts(reddit))
   return fetch(`https://www.reddit.com/r/${reddit}.json`)
-    .then(response => response.json())
-    .then(json => dispatch(receivePosts(reddit, json)))
+  .then(response => response.json())
+  .then(json => dispatch(receivePosts(reddit, json)))
 }
 
 const shouldFetchPosts = (state, reddit) => {
@@ -42,9 +42,10 @@ const shouldFetchPosts = (state, reddit) => {
   if (!posts) {
     return true
   }
+
   if (posts.isFetching) {
     return false
   }
+  
   return posts.didInvalidate
 }
-

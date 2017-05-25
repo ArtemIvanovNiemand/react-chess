@@ -15,26 +15,18 @@ export default class MoveField extends Component {
   onSubmit(e, input){
     e.preventDefault()
     let value = input.value;
-    let isValidInput = value.search(/^\d,\d$/) === 0;
+    let isValidInput = value.search(/^[0-7],[0-7]$/) === 0;
 
     if(!isValidInput){
       alert('Wrong input');
       return;
     }
 
-    var location = input.value.split(',').map(Number);
-    let [x,y] = location;
-
-    if(x< 0 || x > 7 || y < 0 || y > 7){
-      alert('Out of board range');
-      return;
-    }
-
     let fromLocation = this.props.location;
-    let toLocation = location;
+    let toLocation = input.value.split(',').map(Number);
 
     if(canMoveKnight(fromLocation, toLocation)){
-      this.props.horseActions.moveHorse(location);
+      this.props.horseActions.moveHorse(toLocation);
     }else{
       alert('Knight can not move this way');
       return;
