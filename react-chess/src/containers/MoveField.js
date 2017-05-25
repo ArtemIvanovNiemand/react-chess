@@ -12,8 +12,14 @@ export default class MoveField extends Component {
   @autobind
   onSubmit(e, input){
     e.preventDefault()
-    var location = input.value.split(',').map(Number);
-    this.props.horseActions.moveHorse(location);
+    let value = input.value;
+
+    if(value.search(/\d,\d/) === 0){
+      var location = input.value.split(',').map(Number);
+      this.props.horseActions.moveHorse(location);
+    } else {
+      alert('Wrong input');
+    }
   }
 
   @autobind
