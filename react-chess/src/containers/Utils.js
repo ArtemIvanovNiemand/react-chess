@@ -1,10 +1,7 @@
 export const canMoveKnight = (positionFrom, positionTo) => {
   const [ x, y ] = positionFrom;
   const [ toX, toY ] = positionTo;
-
-  console.log(x, y);
-  console.log(toX, toY);
-
+  
   const dx = toX - x;
   const dy = toY - y;
 
