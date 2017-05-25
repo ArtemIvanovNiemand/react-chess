@@ -6,6 +6,8 @@ import * as changeActions from '../actions/ChangeActions'
 import { bindActionCreators } from 'redux'
 import autobind from 'autobind-decorator'
 
+import { canMoveKnight } from './Utils';
+
 @connect(mapStateToProps, mapDispatchToProps)
 export default class MoveField extends Component {
 
@@ -13,13 +15,30 @@ export default class MoveField extends Component {
   onSubmit(e, input){
     e.preventDefault()
     let value = input.value;
+    let isValidInput = value.search(/^\d,\d$/) === 0;
 
-    if(value.search(/\d,\d/) === 0){
-      var location = input.value.split(',').map(Number);
-      this.props.horseActions.moveHorse(location);
-    } else {
+    if(!isValidInput){
       alert('Wrong input');
+      return;
     }
+
+    var location = input.value.split(',').map(Number);
+    let [x,y] = location;
+
+    if(x< 0 || x > 7 || y < 0 || y > 7){
+      alert('Out of board range');
+      return;
+    }
+
+    let fromLocation = this.props.location;
+    let toLocation = location;
+
+    if(canMoveKnight(fromLocation, toLocation)){
+      this.props.horseActions.moveHorse(location);
+    }else{
+      alert('Knight can not move this way');
+      return;
+    }      
   }
 
   @autobind
