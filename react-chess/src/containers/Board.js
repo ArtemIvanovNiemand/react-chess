@@ -4,7 +4,7 @@ import HTML5Backend from 'react-dnd-html5-backend';
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
-import * as horseActions from '../actions/HorseActions'
+import * as knightActions from '../actions/KnightActions'
 import Knight from '../components/Knight';
 import BoardSquare from './BoardSquare';
 import styles from '../styles/Board.css';
@@ -22,7 +22,7 @@ renderSquare(i) {
       <BoardSquare x={x}
                    y={y}
                    knightLocation={this.props.location}
-                   move={this.props.horseActions.moveHorse}
+                   move={this.props.knightActions.moveKnight}
                    >
       
         {this.renderPiece(x, y)}
@@ -55,12 +55,12 @@ renderPiece(x, y) {
 
 function mapStateToProps(state) {
   return {
-    location: state.horse.location
+    location: state.knight.location
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    horseActions: bindActionCreators(horseActions, dispatch)
+    knightActions: bindActionCreators(knightActions, dispatch)
   }
 }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import * as horseActions from '../actions/HorseActions'
+import * as knightActions from '../actions/KnightActions'
 import * as changeActions from '../actions/ChangeActions'
 
 import { bindActionCreators } from 'redux'
@@ -26,7 +26,7 @@ export default class MoveField extends Component {
     let toLocation = input.value.split(',').map(Number);
 
     if(canMoveKnight(fromLocation, toLocation)){
-      this.props.horseActions.moveHorse(toLocation);
+      this.props.knightActions.moveKnight(toLocation);
     }else{
       alert('Knight can not move this way');
       return;
@@ -61,14 +61,14 @@ export default class MoveField extends Component {
 
 function mapStateToProps(state) {
   return {
-    location: state.horse.location,
-    str_location: state.horse.str_location
+    location: state.knight.location,
+    str_location: state.knight.str_location
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    horseActions:  bindActionCreators(horseActions, dispatch),
+    knightActions:  bindActionCreators(knightActions, dispatch),
     changeActions: bindActionCreators(changeActions, dispatch)
   }
 }
