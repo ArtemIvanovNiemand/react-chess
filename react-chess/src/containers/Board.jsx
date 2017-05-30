@@ -22,6 +22,9 @@ renderSquare(i) {
       <BoardSquare x={x}
                    y={y}
                    knightLocation={this.props.location}
+                   WknightLocation={this.props.white_knight_location}
+                   BknightLocation={this.props.black_knight_location}
+                   dragTarget={this.props.drag_target}
                    move={this.props.knightActions.moveKnight}
                    >
       
@@ -32,10 +35,15 @@ renderSquare(i) {
 }
 
 renderPiece(x, y) {
-  const [knightX, knightY] = this.props.location;
+  const [WknightX, WknightY] = this.props.white_knight_location;
+  const [BknightX, BknightY] = this.props.black_knight_location;
 
-  if (x === knightX && y === knightY) {
-    return <Knight />;
+  if (x === WknightX && y === WknightY) {
+    return <Knight color='WHITE' dragTarget={this.props.knightActions.dragTarget} />;
+  }
+
+  if (x === BknightX && y === BknightY) {
+    return <Knight color='BLACK' dragTarget={this.props.knightActions.dragTarget} />;
   }
 }
 
@@ -55,7 +63,10 @@ renderPiece(x, y) {
 
 function mapStateToProps(state) {
   return {
-    location: state.knight.location
+    location: state.knight.location,
+    white_knight_location:state.knight.white_knight_location,
+    black_knight_location:state.knight.black_knight_location,
+    drag_target:state.knight.drag_target
   }
 }
 

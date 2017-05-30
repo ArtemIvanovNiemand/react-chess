@@ -1,12 +1,17 @@
 import React, { Component } from 'react';
-import { KNIGHT_IMG, KNIGHT_DRAG_IMG } from '../constants/Figures'
+import { KNIGHT_IMG, KNIGHT_BLACK_IMG, KNIGHT_DRAG_IMG } from '../constants/Figures'
 import PropTypes from 'prop-types';
 import { ItemTypes } from '../constants/Constants';
 import { DragSource } from 'react-dnd';
 import styles from '../styles/Knight.css';
+import { BLACK } from '../constants/ActionType'
+
+var dragging;
 
 const knightSource = {
-  beginDrag() {
+  beginDrag(props) {
+    console.log(dragging);
+    dragging(props.color);
     return {};
   }
 };
@@ -33,12 +38,15 @@ export default class Knight extends Component {
   }
 
   render() {
-    const { connectDragSource, isDragging } = this.props;
+    const { connectDragSource, isDragging, color, dragTarget } = this.props;
+    console.log(this.props)
     const style = isDragging ? styles.Dragging : styles.NotDragging;
+    const image = (color === BLACK) ? KNIGHT_BLACK_IMG : KNIGHT_IMG;
+    dragging = dragTarget;
 
     return connectDragSource(
       <div className={style}>
-         <img src={KNIGHT_IMG} className={styles.Knight} alt="neigh" />
+         <img src={image} className={styles.Knight} alt="neigh" />
       </div>
     );
   }

@@ -1,9 +1,18 @@
-import { MOVE_KNIGHT } from '../constants/ActionType'
+import { MOVE_KNIGHT, START_DRAGGING } from '../constants/ActionType'
 
-export function moveKnight(new_location) {
+export function moveKnight(color, to) {
 
   return {
     type: MOVE_KNIGHT,
-    location: new_location
+    color: color,
+    to: to
+  };
+}
+
+export function dragTarget(color) {
+
+  return {
+    type: START_DRAGGING,
+    color: color
   };
 }

@@ -5,16 +5,22 @@ import { ItemTypes } from '../constants/Constants';
 import { DropTarget } from 'react-dnd';
 import styles from '../styles/BoardSquare.css';
 import { canMoveKnight } from './Utils';
+import { BLACK } from '../constants/ActionType'
 
 var moveKnight;
 
 const squareTarget = {
   canDrop(props) {
-    return canMoveKnight(props.knightLocation, [props.x, props.y]);
+    if(props.dragTarget === BLACK){
+       return canMoveKnight(props.BknightLocation, [props.x, props.y]);
+    }
+    else{
+       return canMoveKnight(props.WknightLocation, [props.x, props.y]);
+    }
   },
 
   drop(props) {
-     moveKnight([props.x, props.y]);
+     moveKnight(props.dragTarget, [props.x, props.y]);
   }
 };
 
