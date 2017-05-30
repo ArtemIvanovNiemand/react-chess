@@ -20,7 +20,8 @@ const squareTarget = {
   },
 
   drop(props) {
-     moveKnight(props.dragTarget, [props.x, props.y]);
+    let from = (props.dragTarget === BLACK)? props.BknightLocation : props.WknightLocation ;
+     moveKnight(props.dragTarget, [props.x, props.y], from);
   }
 };
 

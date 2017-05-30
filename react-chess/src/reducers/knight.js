@@ -1,4 +1,4 @@
-import { MOVE_KNIGHT, WHITE, START_DRAGGING } from '../constants/ActionType'
+import { MOVE_KNIGHT, WHITE, START_DRAGGING, KNIGHT_WAS_MOVED } from '../constants/ActionType'
 
 const initialState = {
 	white_knight_location: [0,0],
@@ -8,6 +8,7 @@ const initialState = {
   
 export default function knight(state = initialState, action) {
   switch (action.type) {
+    case KNIGHT_WAS_MOVED:
     case MOVE_KNIGHT:
     if(action.color === WHITE ){
       return {...state, white_knight_location: action.to }
