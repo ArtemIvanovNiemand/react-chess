@@ -13,31 +13,31 @@ import styles from '../styles/Board.css';
 @connect(mapStateToProps, mapDispatchToProps)
 export default class Board extends Component {
 
-renderSquare(i) {
-  const x = i % 8;
-  const y = Math.floor(i / 8);
-  return (
-    <div key={i} className={styles.BoardWrap}>
-         
-      <BoardSquare x={x}
-                   y={y}
-                   knightLocation={this.props.location}
-                   move={this.props.knightActions.moveKnight}
-                   >
-      
-        {this.renderPiece(x, y)}
-      </BoardSquare>
-    </div>
-  );
-}
-
-renderPiece(x, y) {
-  const [knightX, knightY] = this.props.location;
-
-  if (x === knightX && y === knightY) {
-    return <Knight />;
+  renderSquare(i) {
+    const x = i % 8;
+    const y = Math.floor(i / 8);
+    return (
+      <div key={i} className={styles.BoardWrap}>
+           
+        <BoardSquare x={x}
+                     y={y}
+                     knightLocation={this.props.location}
+                     move={this.props.knightActions.moveKnight}
+                     >
+        
+          {this.renderPiece(x, y)}
+        </BoardSquare>
+      </div>
+    );
   }
-}
+
+  renderPiece(x, y) {
+    const [knightX, knightY] = this.props.location;
+
+    if (x === knightX && y === knightY) {
+      return <Knight />;
+    }
+  }
 
   render() {
     const squares = [];

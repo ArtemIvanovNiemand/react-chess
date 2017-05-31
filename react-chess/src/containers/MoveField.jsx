@@ -14,9 +14,9 @@ export default class MoveField extends Component {
   onSubmit(e, input){
     e.preventDefault()
     let value = input.value;
-    let isValidInput = value.search(/^[0-7],[0-7]$/) === 0;
+    let notValidInput = value.search(/^[0-7],[0-7]$/) !== 0;
 
-    if(!isValidInput){
+    if(notValidInput){
       alert('Wrong input');
       return;
     }
@@ -26,7 +26,8 @@ export default class MoveField extends Component {
 
     if(canMoveKnight(fromLocation, toLocation)){
       this.props.knightActions.moveKnight(toLocation);
-    }else{
+    }
+    else{
       alert('Knight can not move this way');
       return;
     }      
