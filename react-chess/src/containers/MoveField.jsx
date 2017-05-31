@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import * as knightActions from '../actions/KnightActions'
-import * as changeActions from '../actions/ChangeActions'
 
 import { bindActionCreators } from 'redux'
 import autobind from 'autobind-decorator'
@@ -36,7 +35,7 @@ export default class MoveField extends Component {
   @autobind
   onChange(e){
     const value = e.target.value;
-    this.props.changeActions.changeField(value);
+    this.props.knightActions.changeField(value);
   }
 
   render() {
@@ -68,7 +67,6 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    knightActions:  bindActionCreators(knightActions, dispatch),
-    changeActions: bindActionCreators(changeActions, dispatch)
+    knightActions:  bindActionCreators(knightActions, dispatch)
   }
 }

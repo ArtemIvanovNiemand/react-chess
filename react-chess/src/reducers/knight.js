@@ -1,15 +1,13 @@
-import { MOVE_KNIGHT, CHANGE_FIELD } from '../constants/ActionType'
+import { createReducer } from 'redux-act';
+import { moveKnight, changeField } from '../actions/KnightActions'
 
-const initialState = {location: [0,0], str_location:'0,0'};
-  
-export default function knight(state = initialState, action) {
-  switch (action.type) {
-    case MOVE_KNIGHT:
-      return { location: action.location, str_location: action.location }
-    case CHANGE_FIELD:
-      return { location: state.location, str_location: action.str_location }
-    default:
-      return state;
-  }
+const initialState = { location: [0, 0], str_location: '0,0' };
 
-}
+export const knight = createReducer({
+  [moveKnight]: (state, location) => {
+    return {...state, location: location, str_location: location };
+  },
+  [changeField]: (state, location) => {
+    return {...state, str_location: location };
+  },
+}, initialState);

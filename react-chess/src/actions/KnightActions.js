@@ -1,9 +1,4 @@
-import { MOVE_KNIGHT } from '../constants/ActionType'
+import { createAction } from 'redux-act';
 
-export function moveKnight(new_location) {
-
-  return {
-    type: MOVE_KNIGHT,
-    location: new_location
-  };
-}
+export const moveKnight = createAction('move knight');
+export const changeField = createAction('change field');

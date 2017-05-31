@@ -44,7 +44,8 @@
     "redux": "^3.6.0",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.2.0",
-    "whatwg-fetch": "^2.0.3"
+    "whatwg-fetch": "^2.0.3",
+    "redux-act": "^0.4.0"
   },
   "scripts": {
     "build": "webpack --config webpack.config.js --progress --watch",

@@ -1,4 +1,4 @@
-import knight from './knight'
+import {knight} from './knight'
 
 import { combineReducers } from 'redux'
 import { postsByReddit, selectedReddit } from './reddit'
