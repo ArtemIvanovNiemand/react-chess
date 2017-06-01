@@ -1,12 +1,8 @@
 import { createAction } from 'redux-act';
 
-export const login = createAction('login');
 export const logout = createAction('logout');
 
-export const addUser = createAction('add user');
-export const removeUser = createAction('remove user');
 
-export const newMessage = createAction('new message');
-export const sendMessage = createAction('send message');
 
-export const knightWasMoved = createAction('KNIGHT_WAS_MOVED');
+export const setBoard = createAction('SET_BOARD');
+export const pieceWasMoved = createAction('PIECE_WAS_MOVED');

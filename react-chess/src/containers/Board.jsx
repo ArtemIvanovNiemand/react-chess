@@ -4,10 +4,14 @@ import HTML5Backend from 'react-dnd-html5-backend';
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
-import * as knightActions from '../actions/KnightActions'
-import Knight from '../components/Knight';
+
+import * as pieceActions from '../actions/PieceActions'
+
+import Piece from '../components/Piece';
 import BoardSquare from './BoardSquare';
 import styles from '../styles/Board.css';
+
+ import {getPiece} from './Utils';
 
 @DragDropContext(HTML5Backend)
 @connect(mapStateToProps, mapDispatchToProps)
@@ -21,11 +25,8 @@ renderSquare(i) {
          
       <BoardSquare x={x}
                    y={y}
-                   knightLocation={this.props.location}
-                   WknightLocation={this.props.white_knight_location}
-                   BknightLocation={this.props.black_knight_location}
-                   dragTarget={this.props.drag_target}
-                   move={this.props.knightActions.moveKnight}
+                   dragFrom={this.props.from}
+                   move={this.props.pieceActions.movePiece}
                    >
       
         {this.renderPiece(x, y)}
@@ -35,16 +36,23 @@ renderSquare(i) {
 }
 
 renderPiece(x, y) {
-  const [WknightX, WknightY] = this.props.white_knight_location;
-  const [BknightX, BknightY] = this.props.black_knight_location;
+  const board = this.props.board
 
-  if (x === WknightX && y === WknightY) {
-    return <Knight color='WHITE' dragTarget={this.props.knightActions.dragTarget} />;
+  const piece = getPiece(board, x, y)
+
+  if (piece != null) {
+    return <Piece piece={piece} location= {[x,y]} startDragging={this.props.pieceActions.startDragging}/>;
   }
 
-  if (x === BknightX && y === BknightY) {
-    return <Knight color='BLACK' dragTarget={this.props.knightActions.dragTarget} />;
-  }
+
+  // if (x === WknightX && y === WknightY) {
+  //   console.log(this.props.board)
+  //   return <Knight color='WHITE' dragTarget={this.props.knightActions.dragTarget} />;
+  // }
+
+  // if (x === BknightX && y === BknightY) {
+  //   return <Knight color='BLACK' dragTarget={this.props.knightActions.dragTarget} />;
+  // }
 }
 
   render() {
@@ -63,15 +71,18 @@ renderPiece(x, y) {
 
 function mapStateToProps(state) {
   return {
-    location: state.knight.location,
-    white_knight_location:state.knight.white_knight_location,
-    black_knight_location:state.knight.black_knight_location,
-    drag_target:state.knight.drag_target
+    // location: state.knight.location,
+    // white_knight_location:state.knight.white_knight_location,
+    // black_knight_location:state.knight.black_knight_location,
+    // drag_target:state.knight.drag_target,
+    board: state.board.board,
+    from: state.board.from
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    knightActions: bindActionCreators(knightActions, dispatch)
+    // knightActions: bindActionCreators(knightActions, dispatch),
+    pieceActions: bindActionCreators(pieceActions, dispatch)
   }
 }

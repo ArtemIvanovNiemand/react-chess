@@ -51,6 +51,6 @@
   },
   "scripts": {
     "build": "webpack --config webpack.config.js --progress --watch",
-    "start": "webpack-dev-server --host 192.168.163.200 --port 8080"
+    "start": "webpack-dev-server --host 192.168.163.200 --port 8081"
   }
 }

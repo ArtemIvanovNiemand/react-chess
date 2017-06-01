@@ -4,11 +4,7 @@ import 'regenerator-runtime/runtime'
 import io from 'socket.io-client';
 import { eventChannel } from 'redux-saga';
 import { fork, take, call, put, cancel } from 'redux-saga/effects';
-import {
-  login, logout, addUser, removeUser, newMessage, sendMessage, knightWasMoved
-} from './actions';
-import { MOVE_KNIGHT, KNIGHT_WAS_MOVED } from '../constants/ActionType'
-import * as knightActions from '../actions/KnightActions'
+import { logout, setBoard, pieceWasMoved } from './actions';
 
 function connect() {
   const socket = io('http://192.168.163.200:3000');
@@ -21,24 +17,18 @@ function connect() {
 
 function subscribe(socket) {
   return eventChannel(emit => {
-    socket.on('users.login', ({ username }) => {
-      emit(addUser({ username }));
+    socket.on('MOVE_PICE', e => {
+      emit(pieceWasMoved(e));
     });
-    socket.on('users.logout', ({ username }) => {
-      emit(removeUser({ username }));
+
+    socket.on('PIECE_WAS_MOVED', e => {
+      emit(pieceWasMoved(e));
     });
-    socket.on('messages.new', ({ message }) => {
-      emit(newMessage({ message }));
+
+    socket.on('SET_BOARD', e => {
+      emit(setBoard(e));
     });
-    socket.on('disconnect', e => {
-      // TODO: handle
-    });
-    socket.on(MOVE_KNIGHT, e => {
-    	console.log('SOMEONE MOVED KNIGHT')
-    	console.log(e)
-    	emit(knightWasMoved(e));
-      // TODO: handle
-    });
+
     return () => {};
   });
 }
@@ -46,20 +36,15 @@ function subscribe(socket) {
 function* read(socket) {
   const channel = yield call(subscribe, socket);
   while (true) {
-    let {payload} = yield take(channel);
-    payload.type = KNIGHT_WAS_MOVED;
-
-    yield put(payload);
+    let action = yield take(channel);
+    yield put(action);
   }
 }
 
 function* write(socket) {
   while (true) {
-    const payload  = yield take(MOVE_KNIGHT);
-    console.log('--------------');
-    console.log(payload);
-    console.log('--------------');
-    socket.emit(MOVE_KNIGHT, payload);
+    const payload  = yield take('MOVE_PIECE');
+    socket.emit('MOVE_PIECE', payload);
   }
 }
 
@@ -70,8 +55,9 @@ function* handleIO(socket) {
 
 function* flow() {
   while (true) {
-    let user = 'user'
     const socket = yield call(connect);
+    socket.emit('SET_BOARD');
+
     const task = yield fork(handleIO, socket);
 
     let action = yield take(`${logout}`);

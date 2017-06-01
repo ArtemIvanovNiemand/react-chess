@@ -3,15 +3,12 @@ import { KNIGHT_IMG, KNIGHT_BLACK_IMG, KNIGHT_DRAG_IMG } from '../constants/Figu
 import PropTypes from 'prop-types';
 import { ItemTypes } from '../constants/Constants';
 import { DragSource } from 'react-dnd';
-import styles from '../styles/Knight.css';
+import styles from '../styles/Piece.css';
 import { BLACK } from '../constants/ActionType'
 
-var dragging;
-
-const knightSource = {
+const pieceSource = {
   beginDrag(props) {
-    console.log(dragging);
-    dragging(props.color);
+    props.startDragging(props.color, props.location);
     return {};
   }
 };
@@ -24,8 +21,8 @@ function collect(connect, monitor) {
   }
 }
 
-@DragSource(ItemTypes.KNIGHT, knightSource, collect)
-export default class Knight extends Component {
+@DragSource(ItemTypes.PIECE, pieceSource, collect)
+export default class Piece extends Component {
   static propTypes = {
     connectDragSource: PropTypes.func.isRequired,
     isDragging: PropTypes.bool.isRequired
@@ -38,15 +35,14 @@ export default class Knight extends Component {
   }
 
   render() {
-    const { connectDragSource, isDragging, color, dragTarget } = this.props;
-    console.log(this.props)
+    const { connectDragSource, isDragging, piece } = this.props;
+
     const style = isDragging ? styles.Dragging : styles.NotDragging;
-    const image = (color === BLACK) ? KNIGHT_BLACK_IMG : KNIGHT_IMG;
-    dragging = dragTarget;
+    const image = (piece.color === BLACK) ? KNIGHT_BLACK_IMG : KNIGHT_IMG;
 
     return connectDragSource(
       <div className={style}>
-         <img src={image} className={styles.Knight} alt="neigh" />
+         <img src={image} className={styles.Piece} alt="neigh" />
       </div>
     );
   }

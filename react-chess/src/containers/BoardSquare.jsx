@@ -5,23 +5,17 @@ import { ItemTypes } from '../constants/Constants';
 import { DropTarget } from 'react-dnd';
 import styles from '../styles/BoardSquare.css';
 import { canMoveKnight } from './Utils';
-import { BLACK } from '../constants/ActionType'
 
 var moveKnight;
 
 const squareTarget = {
   canDrop(props) {
-    if(props.dragTarget === BLACK){
-       return canMoveKnight(props.BknightLocation, [props.x, props.y]);
-    }
-    else{
-       return canMoveKnight(props.WknightLocation, [props.x, props.y]);
-    }
+    return canMoveKnight(props.dragFrom, [props.x, props.y]);
   },
 
   drop(props) {
-    let from = (props.dragTarget === BLACK)? props.BknightLocation : props.WknightLocation ;
-     moveKnight(props.dragTarget, [props.x, props.y], from);
+    let from = props.dragFrom;
+     moveKnight(from, [props.x, props.y]);
   }
 };
 
@@ -33,7 +27,7 @@ function collect(connect, monitor) {
   };
 }
 
-@DropTarget(ItemTypes.KNIGHT, squareTarget, collect)
+@DropTarget(ItemTypes.PIECE, squareTarget, collect)
 export default class BoardSquare extends Component {
   static propTypes = {
     x: PropTypes.number.isRequired,
