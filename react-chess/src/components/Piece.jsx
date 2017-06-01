@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { KNIGHT_IMG, KNIGHT_BLACK_IMG, KNIGHT_DRAG_IMG } from '../constants/Figures'
+import {  KNIGHT_DRAG_IMG } from '../constants/Figures'
 import PropTypes from 'prop-types';
 import { ItemTypes } from '../constants/Constants';
 import { DragSource } from 'react-dnd';
 import styles from '../styles/Piece.css';
-import { BLACK } from '../constants/ActionType'
+import { getPieceImg } from './PieceHelper'
 
 const pieceSource = {
   beginDrag(props) {
@@ -41,7 +41,7 @@ export default class Piece extends Component {
     const { connectDragSource, isDragging, piece } = this.props;
 
     const style = isDragging ? styles.Dragging : styles.NotDragging;
-    const image = (piece.color === BLACK) ? KNIGHT_BLACK_IMG : KNIGHT_IMG;
+    const image = getPieceImg(piece);
 
     return connectDragSource(
       <div className={style}>

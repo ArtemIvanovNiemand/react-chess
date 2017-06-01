@@ -12,6 +12,8 @@ import BoardSquare from './BoardSquare';
 import styles from '../styles/Board.css';
 import {getPiece} from './Utils';
 
+import canMove from './MoveHelper';
+
 @DragDropContext(HTML5Backend)
 @connect(mapStateToProps, mapDispatchToProps)
 export default class Board extends Component {
@@ -19,12 +21,18 @@ export default class Board extends Component {
 renderSquare(i) {
   const x = i % 8;
   const y = Math.floor(i / 8);
+
+  // let board = this.props.board
+  // let to = [x,y];
+
+  let canMovePiece = (from, to) => canMove(from, to);
   return (
     <div key={i} className={styles.BoardWrap}>
          
       <BoardSquare x={x}
                    y={y}
                    dragFrom={this.props.from}
+                   canMove={canMovePiece}
                    move={this.props.pieceActions.movePiece}
                    >
       

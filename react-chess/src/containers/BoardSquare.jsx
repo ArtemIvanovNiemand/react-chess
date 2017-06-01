@@ -4,11 +4,12 @@ import Square from '../components/Square';
 import { ItemTypes } from '../constants/Constants';
 import { DropTarget } from 'react-dnd';
 import styles from '../styles/BoardSquare.css';
-import { canMoveKnight } from './Utils';
+// import { canMoveKnight } from './Utils';
+// import canMove from './MoveHelper';
 
 const squareTarget = {
   canDrop(props) {
-    return canMoveKnight(props.dragFrom, [props.x, props.y]);
+    return props.canMove(props.dragFrom);
   },
 
   drop(props) {

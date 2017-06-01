@@ -1,13 +1,13 @@
-export const canMoveKnight = (positionFrom, positionTo) => {
-  const [x, y] = positionFrom;
-  const [toX, toY] = positionTo;
+// export const canMoveKnight = (positionFrom, positionTo) => {
+//   const [x, y] = positionFrom;
+//   const [toX, toY] = positionTo;
 
-  const dx = toX - x;
-  const dy = toY - y;
+//   const dx = toX - x;
+//   const dy = toY - y;
 
-  return (Math.abs(dx) === 2 && Math.abs(dy) === 1) ||
-    (Math.abs(dx) === 1 && Math.abs(dy) === 2);
-};
+//   return (Math.abs(dx) === 2 && Math.abs(dy) === 1) ||
+//     (Math.abs(dx) === 1 && Math.abs(dy) === 2);
+// };
 
 export const getPiece = (arr, x, y) => {
 	if (arr == null){
@@ -17,4 +17,4 @@ export const getPiece = (arr, x, y) => {
   return arr[x * 8 + y];
 };
 
-export default canMoveKnight;
+// export default canMoveKnight;
