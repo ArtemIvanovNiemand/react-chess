@@ -22,10 +22,10 @@ renderSquare(i) {
   const x = i % 8;
   const y = Math.floor(i / 8);
 
-  // let board = this.props.board
+  let board = this.props.board
   // let to = [x,y];
 
-  let canMovePiece = (from, to) => canMove(from, to);
+  let canMovePiece = (from, to) => canMove(board, from, to);
   return (
     <div key={i} className={styles.BoardWrap}>
          

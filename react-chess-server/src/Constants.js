@@ -1,4 +1,4 @@
-export const HOST = '192.168.163.200';
+export const HOST = 'localhost';
 
 export const PAWN = 'PAWN'; // пешка
 export const KING = 'KING'; // король

@@ -9,7 +9,7 @@ import styles from '../styles/BoardSquare.css';
 
 const squareTarget = {
   canDrop(props) {
-    return props.canMove(props.dragFrom);
+    return props.canMove(props.dragFrom, [props.x, props.y]);
   },
 
   drop(props) {

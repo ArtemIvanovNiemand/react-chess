@@ -1,35 +1,28 @@
-// import { getPiece } from './Utils';
+import { isSameCell, getPiece } from './Utils';
+import { canMovePawn,
+         canMoveKnight,
+         canMoveRook,
+         canMoveBishop,
+         canMoveQueen ,
+         canMoveKing
+       } from './MoveFunctions';
 
- const canMoveKnight = (positionFrom, positionTo) => {
-  const [x, y] = positionFrom;
-  const [toX, toY] = positionTo;
-
-  const dx = toX - x;
-  const dy = toY - y;
-
-  return (Math.abs(dx) === 2 && Math.abs(dy) === 1) || (Math.abs(dx) === 1 && Math.abs(dy) === 2);
-    
+const moveFunctions = {
+  PAWN: canMovePawn,
+  KNIGHT: canMoveKnight,
+  ROOK: canMoveRook,
+  BISHOP: canMoveBishop,
+  QUEEN: canMoveQueen,
+  KING: canMoveKing
 };
 
-// const canMoveRook = (positionFrom, positionTo) => {
-//   const [x, y] = positionFrom;
-//   const [toX, toY] = positionTo;
+export default function canMove(board, from, to) {
+  if(isSameCell(from, to)) return false;
 
-//   const dx = toX - x;
-//   const dy = toY - y;
-
-//   return (Math.abs(dx) === 0) || (Math.abs(dy) === 0);
-// };
-
-// const moveFunctions = {
-//   ROOK: canMoveRook,
-//   KNIGHT: canMoveKnight
-// };
-
-export default function canMove(from, to) {
-  // let [x, y] = from;
-  // let piece = getPiece(board, x, y);
-  // let canMovePiece = moveFunctions[piece.name];
-
-  return canMoveKnight(from, to);
+  let [x, y] = from;
+  let piece = getPiece(board, x, y);
+  if(piece === null) return false;
+  
+  let canMovePiece = moveFunctions[piece.name];
+  return canMovePiece(from, to, piece);
 }

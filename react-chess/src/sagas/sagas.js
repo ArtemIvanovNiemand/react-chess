@@ -8,7 +8,7 @@ import { logout } from './actions';
 import { movePiece, pieceWasMoved, startDragging, setBoard } from '../actions/PieceActions';
   
 function connect() {
-  const socket = io('http://192.168.163.200:3000');
+  const socket = io('http://localhost:3000');
   return new Promise(resolve => {
     socket.on('connect', () => {
       resolve(socket);
