@@ -1,28 +1,5 @@
-import { MOVE_PIECE, START_DRAGGING, PIECE_WAS_MOVED } from '../constants/ActionType'
+import { createAction } from 'redux-act';
 
-export function movePiece(from, to) {
-
-  return {
-    type: MOVE_PIECE,
-    from:from,
-    to: to
-  };
-}
-
-export function pieceWasMoved(to, from) {
-
-  return {
-    type: PIECE_WAS_MOVED,
-    from:from,
-    to: to
-  };
-}
-
-export function startDragging(color, from) {
-
-  return {
-    type: START_DRAGGING,
-    color: color,
-    from: from
-  };
-}
+export const movePiece = createAction('MOVE_PIECE');
+export const pieceWasMoved = createAction('PIECE_WAS_MOVED');
+export const setBoard = createAction('SET_BOARD');

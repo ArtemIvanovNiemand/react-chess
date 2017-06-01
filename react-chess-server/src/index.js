@@ -15,7 +15,7 @@ io.on('connection', ctx => {
 });
 
 io.on('MOVE_PIECE', (ctx, data) => {
-	let {from, to } = data
+	let {from, to } = data.payload
 	board.movePiece(from, to)
 	
   console.log(`[server] piece moved from:${from} to ${to}`);

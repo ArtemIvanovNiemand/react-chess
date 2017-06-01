@@ -8,7 +8,10 @@ import { BLACK } from '../constants/ActionType'
 
 const pieceSource = {
   beginDrag(props) {
-    props.startDragging(props.color, props.location);
+    let color = props.piece.color;
+    let location = props.location;
+    props.startDragging({color:color, location:location});
+    
     return {};
   }
 };

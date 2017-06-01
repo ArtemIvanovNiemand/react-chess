@@ -4,8 +4,9 @@ import 'regenerator-runtime/runtime'
 import io from 'socket.io-client';
 import { eventChannel } from 'redux-saga';
 import { fork, take, call, put, cancel } from 'redux-saga/effects';
-import { logout, setBoard, pieceWasMoved } from './actions';
-
+import { logout } from './actions';
+import { movePiece, pieceWasMoved, startDragging, setBoard } from '../actions/PieceActions';
+  
 function connect() {
   const socket = io('http://192.168.163.200:3000');
   return new Promise(resolve => {

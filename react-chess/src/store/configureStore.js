@@ -15,13 +15,6 @@ export default function configureStore(initialState) {
     initialState,
     applyMiddleware(...middleware));
 
-  if (module.hot) {
-    module.hot.accept('../reducers', () => {
-      const nextRootReducer = require('../reducers')
-      store.replaceReducer(nextRootReducer)
-    })
-  }
-
   sagaMiddleware.run(saga);
   return store
 }

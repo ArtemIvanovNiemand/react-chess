@@ -6,8 +6,6 @@ import { DropTarget } from 'react-dnd';
 import styles from '../styles/BoardSquare.css';
 import { canMoveKnight } from './Utils';
 
-var moveKnight;
-
 const squareTarget = {
   canDrop(props) {
     return canMoveKnight(props.dragFrom, [props.x, props.y]);
@@ -15,7 +13,8 @@ const squareTarget = {
 
   drop(props) {
     let from = props.dragFrom;
-     moveKnight(from, [props.x, props.y]);
+    let to = [props.x, props.y];
+    props.move({from:from, to:to});
   }
 };
 
@@ -45,8 +44,7 @@ export default class BoardSquare extends Component {
   }
 
   render() {
-    const { x, y, move, connectDropTarget, isOver, canDrop } = this.props;
-    moveKnight = move;
+    const { x, y, connectDropTarget, isOver, canDrop } = this.props;
     
     const black = (x + y) % 2 === 1;
 

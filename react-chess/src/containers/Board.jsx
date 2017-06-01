@@ -4,14 +4,13 @@ import HTML5Backend from 'react-dnd-html5-backend';
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
-
 import * as pieceActions from '../actions/PieceActions'
+import * as draggingActions from '../actions/DraggingActions'
 
 import Piece from '../components/Piece';
 import BoardSquare from './BoardSquare';
 import styles from '../styles/Board.css';
-
- import {getPiece} from './Utils';
+import {getPiece} from './Utils';
 
 @DragDropContext(HTML5Backend)
 @connect(mapStateToProps, mapDispatchToProps)
@@ -41,18 +40,12 @@ renderPiece(x, y) {
   const piece = getPiece(board, x, y)
 
   if (piece != null) {
-    return <Piece piece={piece} location= {[x,y]} startDragging={this.props.pieceActions.startDragging}/>;
+    return <Piece 
+              piece={piece} 
+              location= {[x,y]} 
+              startDragging={this.props.draggingActions.startDragging}
+            />;
   }
-
-
-  // if (x === WknightX && y === WknightY) {
-  //   console.log(this.props.board)
-  //   return <Knight color='WHITE' dragTarget={this.props.knightActions.dragTarget} />;
-  // }
-
-  // if (x === BknightX && y === BknightY) {
-  //   return <Knight color='BLACK' dragTarget={this.props.knightActions.dragTarget} />;
-  // }
 }
 
   render() {
@@ -71,18 +64,14 @@ renderPiece(x, y) {
 
 function mapStateToProps(state) {
   return {
-    // location: state.knight.location,
-    // white_knight_location:state.knight.white_knight_location,
-    // black_knight_location:state.knight.black_knight_location,
-    // drag_target:state.knight.drag_target,
     board: state.board.board,
-    from: state.board.from
+    from: state.dragging.from
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    // knightActions: bindActionCreators(knightActions, dispatch),
+    draggingActions: bindActionCreators(draggingActions, dispatch),
     pieceActions: bindActionCreators(pieceActions, dispatch)
   }
 }
