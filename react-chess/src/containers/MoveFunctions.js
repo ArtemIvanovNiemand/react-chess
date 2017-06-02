@@ -13,8 +13,10 @@ export function canMovePawn(from, to, board){
   const con2 = (Math.abs(toX - x) === 1) && 
                (toY - y === diff) && 
                (!CanMovePawn(board, from, to));
+  
+  const con3 = !fromPiece.wasMoved && (toY - y === 2*diff) && (x === toX);
 
-  return con1 || con2;
+  return con1 || con2 || con3;
 }
 
 export function canMoveKnight(from, to){

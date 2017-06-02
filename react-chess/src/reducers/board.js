@@ -16,7 +16,8 @@ const board = createReducer({
     let toLine = to[0] * 8 + to[1];
 
     let piece = new_board[fromLine];
-
+    piece.wasMoved = true;
+    
     new_board[fromLine] = null;
     new_board[toLine] = piece;
 

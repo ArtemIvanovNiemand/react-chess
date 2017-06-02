@@ -29,6 +29,8 @@ export default class Board {
     const toLine = 8 * toX + toY
 
     let piece = this.array[fromLine];
+    piece.wasMoved = true;
+    
     this.array[fromLine] = undefined;
     this.array[toLine] = piece;
   }
