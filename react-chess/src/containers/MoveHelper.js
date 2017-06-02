@@ -1,4 +1,4 @@
-import { isSameCell, getPiece } from './Utils';
+import { isSameCell, isSameColor, getPiece } from './Utils';
 import { canMovePawn,
          canMoveKnight,
          canMoveRook,
@@ -18,11 +18,12 @@ const moveFunctions = {
 
 export default function canMove(board, from, to) {
   if(isSameCell(from, to)) return false;
+  if(isSameColor(board, from, to)) return false;
 
   let [x, y] = from;
   let piece = getPiece(board, x, y);
   if(piece === null) return false;
   
   let canMovePiece = moveFunctions[piece.name];
-  return canMovePiece(from, to, piece);
+  return canMovePiece(from, to, board);
 }

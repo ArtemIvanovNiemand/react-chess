@@ -1,9 +1,20 @@
-export function canMovePawn(from, to, piece){
-  const diff = (piece.color === 'BLACK') ? 1 : -1;
-  const [x, y] = from;
-  const [toX, toY] = to;
+import { getPiece, CanMovePawn } from './Utils';
 
-  return (x === toX) && (toY - y === diff);
+export function canMovePawn(from, to, board){
+  const [x, y] = from;
+  const [toX, toY] = to; 
+
+  const fromPiece = getPiece(board, x, y);
+  const toPiece = getPiece(board, toX, toY);
+
+  const diff = (fromPiece.color === 'BLACK') ? 1 : -1;
+
+  const con1 = (x === toX) && (toY - y === diff) && (toPiece === null);
+  const con2 = (Math.abs(toX - x) === 1) && 
+               (toY - y === diff) && 
+               (!CanMovePawn(board, from, to));
+
+  return con1 || con2;
 }
 
 export function canMoveKnight(from, to){
@@ -35,7 +46,7 @@ export function canMoveBishop(from, to){
 }
 
 export function canMoveQueen(from, to){
-  
+
   return canMoveBishop(from, to) && canMoveBishop(from, to);
 }
 
