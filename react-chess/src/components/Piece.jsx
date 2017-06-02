@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import {  KNIGHT_DRAG_IMG } from '../constants/Figures'
 import PropTypes from 'prop-types';
 import { ItemTypes } from '../constants/Constants';
 import { DragSource } from 'react-dnd';
@@ -33,7 +32,7 @@ export default class Piece extends Component {
 
   componentDidMount() {
     const img = new Image();
-    img.src = KNIGHT_DRAG_IMG;
+    img.src = getPieceImg(this.props.piece);
     img.onload = () => this.props.connectDragPreview(img);
   }
 
