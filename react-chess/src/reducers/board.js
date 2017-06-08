@@ -1,5 +1,5 @@
 import { createReducer } from 'redux-act';
-import { movePiece, pieceWasMoved, setBoard } from '../actions/PieceActions';
+import { movePiece, pieceWasMoved, setBoard } from 'actions/PieceActions';
 
 const initialState = {
   board: undefined

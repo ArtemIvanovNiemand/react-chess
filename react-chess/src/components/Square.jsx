@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import styles from '../styles/Square.css';
+import styles from 'styles/Square.css';
 
 export default class Square extends Component {
   static propTypes = {

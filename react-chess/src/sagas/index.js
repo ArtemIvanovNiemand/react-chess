@@ -1,20 +1,20 @@
-/* eslint-disable */
-import 'regenerator-runtime/runtime'
 
+import 'regenerator-runtime/runtime'
 import io from 'socket.io-client';
 import { eventChannel } from 'redux-saga';
 import { fork, take, call, put, cancel } from 'redux-saga/effects';
-import { logout } from './actions';
-import { movePiece, pieceWasMoved, startDragging, setBoard } from '../actions/PieceActions';
-  
+import { pieceWasMoved, setBoard, logout } from 'actions/PieceActions';
+
+/* eslint-disable */  
 function connect() {
-  const socket = io('http://localhost:3000');
+  const socket = io('http://192.168.163.200:3000');
   return new Promise(resolve => {
     socket.on('connect', () => {
       resolve(socket);
     });
   });
 }
+/* eslint-disable */
 
 function subscribe(socket) {
   return eventChannel(emit => {
@@ -70,4 +70,3 @@ function* flow() {
 export default function* rootSaga() {
   yield fork(flow);
 }
-/* eslint-disable */

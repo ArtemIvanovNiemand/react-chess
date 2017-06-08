@@ -7,9 +7,9 @@ import { connect } from 'react-redux'
 import * as pieceActions from '../actions/PieceActions'
 import * as draggingActions from '../actions/DraggingActions'
 
-import Piece from '../components/Piece';
+import Piece from 'components/Piece';
 import BoardSquare from './BoardSquare';
-import styles from '../styles/Board.css';
+import styles from 'styles/Board.css';
 import {getPiece} from './Utils';
 
 import canMove from './MoveHelper';
@@ -23,7 +23,6 @@ renderSquare(i) {
   const y = Math.floor(i / 8);
 
   let board = this.props.board
-  // let to = [x,y];
 
   let canMovePiece = (from, to) => canMove(board, from, to);
   return (

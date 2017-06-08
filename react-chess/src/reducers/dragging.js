@@ -1,5 +1,5 @@
 import { createReducer } from 'redux-act';
-import { startDragging } from '../actions/DraggingActions';
+import { startDragging } from 'actions/DraggingActions';
 
 const initialState = {
   from: undefined,

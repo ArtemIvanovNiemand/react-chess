@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { ItemTypes } from '../constants/Constants';
+import { ItemTypes } from 'constants/Constants';
 import { DragSource } from 'react-dnd';
-import styles from '../styles/Piece.css';
+import styles from 'styles/Piece.css';
 import { getPieceImg } from './PieceHelper'
 
 const pieceSource = {
